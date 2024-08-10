@@ -1,0 +1,51 @@
+==== Table of squares with default n:
+| 1 |   1 |
+| 2 |   4 |
+| 3 |   9 |
+| 4 |  16 |
+====
+
+==== Table of squares with n=n*2:
+| 1 |   1 |
+| 2 |   4 |
+| 3 |   9 |
+| 4 |  16 |
+| 5 |  25 |
+| 6 |  36 |
+| 7 |  49 |
+| 8 |  64 |
+====
+
+==== Table of squares dynamic name and n=n*3:
+| 1 |   1 |
+| 2 |   4 |
+| 3 |   9 |
+| 4 |  16 |
+| 5 |  25 |
+| 6 |  36 |
+| 7 |  49 |
+| 8 |  64 |
+| 9 |  81 |
+| 10 | 100 |
+| 11 | 121 |
+| 12 | 144 |
+====
+
+==== For loop:
+1 is odd
+2 is even
+3 is odd
+4 is even
+
+==== While loop:
+5
+4
+3
+2
+1
+
+==== Include child/child template:
+| 1 |   1 |
+| 2 |   4 |
+| 3 |   9 |
+| 4 |  16 |

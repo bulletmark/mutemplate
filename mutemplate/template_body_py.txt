@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+# This is a dummy python file that is read by the template builder as a
+# text file (from TEMPLATE_START) to be inserted as the template code
+# main body. We maintain this as a separate file rather than a string
+# constant so we can edit/reformat/check it etc with Python syntax
+# highlighting and other IDE features.
+
+_templates = {
+    'dummy': None,
+}
+
+# ### TEMPLATE_START
+class Template_Namespace:
+    def __init__(self, args):
+        self._dict = args
+
+    def __getattr__(self, val):
+        return self._dict.get(val)
+
+class Template:
+    def __init__(self, name):
+        x = name.rfind('.')
+        self.func = _templates.get(name if x < 0 else name[:x])
+        if not self.func:
+            raise ValueError(f'No template "{name}"')
+
+    def generate(self, *args, **kwargs):
+        return self.func(Template_Namespace(dict(*args, **kwargs)))
+
+    def render(self, *args, **kwargs):
+        return ''.join(self.func(Template_Namespace(dict(*args, **kwargs))))
+
+# flake8: noqa
