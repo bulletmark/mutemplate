@@ -187,7 +187,8 @@ class _render(COMMAND):
     @staticmethod
     def init(parser: ArgumentParser) -> None:
         parser.add_argument('-d', '--delineate', action='store_true',
-                            help='delineate chunks in generated output')
+                            help='delineate chunks with "|" in generated '
+                            'output')
         parser.add_argument('template_file',
                             help='python template file')
         parser.add_argument('template_name',

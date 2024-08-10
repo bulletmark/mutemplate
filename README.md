@@ -244,7 +244,7 @@ positional arguments:
 
 options:
   -h, --help       show this help message and exit
-  -d, --delineate  delineate chunks in generated output
+  -d, --delineate  delineate chunks with "|" in generated output
 
 aliases: r
 ```
