@@ -4,9 +4,9 @@
 
 [`mutemplate`][mutemplate] is a command line tool you run on your
 development host/PC to compile one or more `mutemplate` text files into
-a single dynamically created Python source file which can be imported
-into your project and rendered by specifying the template name and it's
-parameter arguments. `mutemplate` creates very lightweight and
+a single dynamically created stand-alone Python source file which can be
+imported into your project and rendered by specifying the template name
+and it's parameter arguments. `mutemplate` creates very lightweight and
 memory-efficient templates which are primarily designed for resource
 constrained environments such as [MicroPython][mp] on a
 micro-controller, although created templates can be used with standard
