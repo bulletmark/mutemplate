@@ -192,7 +192,7 @@ Type `mutemplate` or `mutemplate -h` to view the usage summary:
 ```
 usage: mutemplate [-h] {compile,c,render,r} ...
 
-Command line tool to compile one or more mutemplate source files into a single
+Command line tool to compile one or more template source files into a single
 importable python source file.
 
 options:
