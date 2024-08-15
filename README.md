@@ -98,9 +98,10 @@ Then run the compiler at the command line on your PC:
 $ mutemplate compile -o templates.py templates/*.tpl
 ```
 
-This compiles all the template file in `templates/*.tpl` into a single newly
-created `./templates.py` file. Copy that file (or just the `.mpy` bytecode) to
-your MicroPython project, import it, and use it as follows:
+This compiles all the template files in `templates/*.tpl` into a single
+newly created `./templates.py` file. Copy that single file (or just the
+`.mpy` bytecode) to your MicroPython project, import it, and use it as
+follows:
 
 ```python
 from microdot import Response
@@ -192,7 +193,7 @@ Type `mutemplate` or `mutemplate -h` to view the usage summary:
 ```
 usage: mutemplate [-h] {compile,c,render,r} ...
 
-Command line tool to compile one or more template source files into a single
+Command line tool to compile one or more template text files into a single
 importable python source file.
 
 options:

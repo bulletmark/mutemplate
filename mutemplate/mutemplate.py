@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Command line tool to compile one or more template source files into a
+Command line tool to compile one or more template text files into a
 single importable python source file.
 '''
 from __future__ import annotations
