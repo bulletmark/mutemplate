@@ -3,7 +3,7 @@
 [![AUR](https://img.shields.io/aur/version/mutemplate)](https://aur.archlinux.org/packages/mutemplate/)
 
 [`mutemplate`][mutemplate] is a command line tool you run on your
-development host/PC to compile one or more `mutemplate` text files into
+development host/PC to compile one or more template text files into
 a single dynamically created stand-alone Python source file which can be
 imported into your project and rendered by specifying the template name
 and it's parameter arguments. `mutemplate` creates very lightweight and
