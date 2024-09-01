@@ -260,7 +260,7 @@ AUR](https://aur.archlinux.org/packages/mutemplate) and skip this
 section.
 
 The easiest way to install [`mutemplate`][mutemplate] is to use
-[`pipx`][pipx] (or [`pipxu`][pipxu]).
+[`pipx`][pipx] (or [`pipxu`][pipxu], or [`uv tool`][uvtool]).
 
 ```sh
 $ pipx install mutemplate
@@ -298,5 +298,6 @@ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License at
 [jinja]: https://jinja.palletsprojects.com/en/3.1.x/templates/
 [pipx]: https://github.com/pypa/pipx
 [pipxu]: https://github.com/bulletmark/pipxu
+[uvtool]: https://docs.astral.sh/uv/guides/tools/#installing-tools
 
 <!-- vim: se ai syn=markdown: -->
