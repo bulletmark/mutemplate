@@ -162,8 +162,10 @@ an advantage of the `mutemplate` approach is that to add a new template
 variable you only need to add it to the template and to the calling
 function but `utemplate` requires you to also add it to the `args`
 parameter line and you also must ensure you maintain correct order which
-is easy to get wrong. Also, the clear distinction between external and
-internal variables in your templates is useful.
+is easy to get wrong. Also, the clear distinction in your templates
+between internal variables (i.e. temporary loop counters/variables etc)
+and externally passed-in values (i.e. those in the `t.*` namespace) is
+useful.
 
 3. `utemplate` compiles and stores multiple copies of child templates
 when they are included multiple times from different parent templates
