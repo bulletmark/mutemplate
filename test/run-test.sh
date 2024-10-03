@@ -6,7 +6,7 @@ echo
 echo "Compiling templates .."
 pwd=$(pwd)
 cd ..
-python -m mutemplate compile -o $pwd/templates.py examples/*.tpl
+python -m mutemplate compile -o $pwd/templates.py examples
 cd $pwd
 
 echo
