@@ -152,8 +152,16 @@ class _Compiler:
 def compile(filename_in: Path, file_out: IO, funcname: str) -> None:
     'Compile a template file to a Python function'
     comp = _Compiler(filename_in, file_out, funcname)
+    out = False
     with filename_in.open() as file_in:
         for line in file_in:
+            out = True
             comp.parse_line(line)
+
+    # If the template file is empty, we need to at least yield an empty
+    # string.
+    if not out:
+        comp.indent()
+        comp.file_out.write('yield ""\n')
 
     comp.close_literal()

@@ -12,3 +12,7 @@
 ====
 
 {% include "forloop.tpl" %}
+
+==== Empty file:
+{% include "empty.tpl" %}
+====
