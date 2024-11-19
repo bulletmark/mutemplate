@@ -134,10 +134,11 @@ def main() -> str | None:
 def recurse(paths: Iterable[Path]) -> Iterator[Path]:
     'Recursively yield files from a list of files and directories'
     for path in paths:
-        if path.is_dir():
-            yield from recurse(path.iterdir())
-        else:
-            yield path
+        if path.name[0] != '.':
+            if path.is_dir():
+                yield from recurse(path.iterdir())
+            else:
+                yield path
 
 @COMMAND.add
 class _compile(COMMAND):
