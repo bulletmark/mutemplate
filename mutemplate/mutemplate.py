@@ -13,7 +13,7 @@ from argparse import ArgumentParser, Namespace
 from ast import literal_eval
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import IO, Any, Iterable, Iterator
+from typing import IO, Any
 
 from .compiler import compile
 
@@ -131,15 +131,6 @@ def main() -> str | None:
     args.basedir = Path(__file__).parent
     return args.func(args)
 
-def recurse(paths: Iterable[Path]) -> Iterator[Path]:
-    'Recursively yield files from a list of files and directories'
-    for path in paths:
-        if path.name[0] != '.':
-            if path.is_dir():
-                yield from recurse(path.iterdir())
-            else:
-                yield path
-
 @COMMAND.add
 class _compile(COMMAND):
     'Compile one or more template files into a single Python source file.'
@@ -153,14 +144,11 @@ class _compile(COMMAND):
         parser.add_argument('-q', '--quiet', action='store_true',
                             help='do not print any informational messages')
         parser.add_argument('template_file', nargs='+',
-                            help='input template file[s] '
-                            '(or dir[s] containing template file[s])')
+                            help='input template file[s]')
 
     @staticmethod
     def run(args: Namespace) -> str | None:
-        files = list(dict.fromkeys(recurse(Path(p)
-                                           for p in args.template_file)))
-        if not files:
+        if not (files := [Path(p) for p in args.template_file]):
             return 'No files specified.'
 
         for file in files:

@@ -96,11 +96,6 @@ Then run the compiler at the command line on your PC:
 
 ```sh
 $ mutemplate compile -o templates.py templates/*.tpl
-
-# Note: if you only have *.tpl files in the templates directory you can
-# alternately specify just the directory name:
-
-$ mutemplate compile -o templates.py templates
 ```
 
 This compiles all the template files in `templates/*.tpl` into a single
@@ -226,8 +221,7 @@ usage: mutemplate compile [-h] [-o OUTFILE] [-w] [-q]
 Compile one or more template files into a single Python source file.
 
 positional arguments:
-  template_file         input template file[s] (or dir[s] containing template
-                        file[s])
+  template_file         input template file[s]
 
 options:
   -h, --help            show this help message and exit

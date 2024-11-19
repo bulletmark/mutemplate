@@ -6,7 +6,10 @@ echo
 echo "Compiling templates .."
 pwd=$(pwd)
 cd ..
-python -m mutemplate compile -o $pwd/templates.py examples
+if ! python -m mutemplate compile -o $pwd/templates.py examples/*.tpl; then
+	echo "Failed to compile templates" >&2
+	exit 1
+fi
 cd $pwd
 
 echo
