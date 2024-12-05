@@ -149,7 +149,6 @@ def main() -> str | None:
         opt.print_help()
         return None
 
-    args.basedir = Path(__file__).parent
     return args.func(args)
 
 @COMMAND.add
