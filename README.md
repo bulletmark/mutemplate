@@ -259,23 +259,24 @@ Python 3.7 or later is required. Arch Linux users can install
 AUR](https://aur.archlinux.org/packages/mutemplate) and skip this
 section.
 
-The easiest way to install [`mutemplate`][mutemplate] is to use
-[`pipx`][pipx] (or [`pipxu`][pipxu], or [`uv tool`][uvtool]).
+Note [mutemplate is on PyPI](https://pypi.org/project/mutemplate/) so
+the easiest way to install it is to use [`uv tool`][uvtool] (or
+[`pipx`][pipx] or [`pipxu`][pipxu]).
 
 ```sh
-$ pipx install mutemplate
+$ uv tool install mutemplate
 ```
 
 To upgrade:
 
 ```sh
-$ pipx upgrade mutemplate
+$ uv tool upgrade mutemplate
 ```
 
 To uninstall:
 
 ```sh
-$ pipx uninstall mutemplate
+$ uv tool uninstall mutemplate
 ```
 
 ## License
