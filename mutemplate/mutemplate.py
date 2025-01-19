@@ -45,15 +45,6 @@ class Template:
         return ''.join(self.func(Template_Namespace(dict(*args, **kwargs))))
 '''
 
-class COMMAND:
-    'Base class for all commands'
-    commands = []  # type: ignore
-
-    @classmethod
-    def add(cls, parent) -> None:
-        'Append parent command to internal list'
-        cls.commands.append(parent)
-
 def get_title(desc: str) -> str:
     'Return single title line from description'
     res = []
@@ -123,8 +114,13 @@ def main() -> str | None:
     cmd = opt.add_subparsers(title='Commands', dest='cmdname')
 
     # Add each command ..
-    for cls in COMMAND.commands:
-        name = cls.__name__[1:]
+    for name in globals():
+        if not name[0].islower() or not name.endswith('_'):
+            continue
+
+        cls = globals()[name]
+        name = name[:-1]
+
         if hasattr(cls, 'doc'):
             desc = cls.doc.strip()
         elif cls.__doc__:
@@ -151,8 +147,7 @@ def main() -> str | None:
 
     return args.func(args)
 
-@COMMAND.add
-class _compile(COMMAND):
+class compile_:
     'Compile one or more template files into a single Python source file.'
     @staticmethod
     def init(parser: ArgumentParser) -> None:
@@ -196,8 +191,7 @@ class _compile(COMMAND):
 
         return None
 
-@COMMAND.add
-class _render(COMMAND):
+class render_:
     'Render given templates + arguments to output, for exercising/testing.'
     @staticmethod
     def init(parser: ArgumentParser) -> None:
