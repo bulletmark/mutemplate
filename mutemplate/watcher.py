@@ -1,15 +1,18 @@
-'Implement monitoring for file changes'
+"Implement monitoring for file changes"
+
 # Author: Mark Blakeney, Oct 2023.
 from __future__ import annotations
 
 import time
 from pathlib import Path
 
+
 class Watcher:
-    'Monitor file changes using simple polling'
-    def __init__(self, watching: list[Path], *,
-                 log_changes: bool = False,
-                 poll_time: float = 0.2) -> None:
+    "Monitor file changes using simple polling"
+
+    def __init__(
+        self, watching: list[Path], *, log_changes: bool = False, poll_time: float = 0.2
+    ) -> None:
         self.files = {f: f.stat().st_mtime for f in watching}
         self.log_changes = log_changes
         self.poll_time = poll_time

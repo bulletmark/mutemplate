@@ -1,25 +1,27 @@
 NAME = $(shell basename $(CURDIR))
 PYNAME = $(subst -,_,$(NAME))
 
-check:: test
+check: test
 	ruff check $(NAME)/*.py
-	flake8 $(NAME)/*.py
 	mypy $(NAME)/*.py
 	pyright $(NAME)/*.py
 	vermin -vv --no-tips -i $(NAME)/*.py
 
-build::
+build:
 	rm -rf dist
 	python3 -m build
 
 upload: build
 	twine3 upload dist/*
 
-doc::
+doc:
 	update-readme-usage -a
 
-test::
+test:
 	cd test && make test
 
-clean::
+format:
+	ruff format $(NAME)/*.py
+
+clean:
 	@rm -vrf *.egg-info .venv/ build/ dist/ __pycache__ $(NAME)/__pycache__ test/templates.py

@@ -17,10 +17,12 @@ CLOSE_CHARS = {STATEMENT: '%}', EXPRESSION: '}}', COMMENT: '#}'}
 
 NAMESPACE = 't'
 
+
 def split_keyword(text: str) -> tuple[str, str]:
-    'Split keyword from the rest of the text, return as tuple'
+    "Split keyword from the rest of the text, return as tuple"
     tokens = text.split(maxsplit=1)
     return tokens[0], tokens[1] if len(tokens) > 1 else ''
+
 
 @dataclass
 class _Compiler:
@@ -62,9 +64,11 @@ class _Compiler:
         for arg in argslist:
             sa = re.sub(r'\s*=\s*', '=', arg.strip())
             if '=' not in sa[1:-1]:
-                raise ValueError(f'Template "{self.filename}": '
-                                 f'Require "var=<expr>" in argument: "{sa}" in '
-                                 f'argument list "{args}"')
+                raise ValueError(
+                    f'Template "{self.filename}": '
+                    f'Require "var=<expr>" in argument: "{sa}" in '
+                    f'argument list "{args}"'
+                )
             alist.append(sa)
 
         return ', '.join(a.strip() for a in alist)
@@ -74,8 +78,9 @@ class _Compiler:
         if keyword == 'args':
             # This keyword which is used by the original version of
             # utemplate but we don't need it.
-            raise NotImplementedError(f'Template "{self.filename}": '
-                                      f'"{keyword}" keyword is not supported')
+            raise NotImplementedError(
+                f'Template "{self.filename}": "{keyword}" keyword is not supported'
+            )
         elif keyword == 'set':
             self.indent()
             self.file_out.write(stmt[3:].strip() + '\n')
@@ -84,16 +89,18 @@ class _Compiler:
                 self.indent()
 
             keyword, rest = split_keyword(rest)
-            name = keyword[2:-2] \
-                    if keyword[0] == '{' else f'"{Path(keyword[1:-1]).stem}"'
+            name = (
+                keyword[2:-2] if keyword[0] == '{' else f'"{Path(keyword[1:-1]).stem}"'
+            )
 
             args = self.parse_args(rest)
             if args:
                 args = f', {args}'
 
             self.indent()
-            self.file_out.write(f'yield from Template({name}).generate('
-                                f'{NAMESPACE}._dict{args})\n')
+            self.file_out.write(
+                f'yield from Template({name}).generate({NAMESPACE}._dict{args})\n'
+            )
         elif rest:
             if keyword == 'elif':
                 assert self.stack[-1] == 'if', 'elif without if for "{stmt}"'
@@ -105,8 +112,9 @@ class _Compiler:
                 self.stack.append(keyword)
         else:
             if stmt.startswith('end'):
-                assert self.stack[-1] == stmt[3:], \
-                        f'mismatched "{stmt}" for "{self.stack[-1]}"'
+                assert self.stack[-1] == stmt[3:], (
+                    f'mismatched "{stmt}" for "{self.stack[-1]}"'
+                )
                 self.stack.pop()
             elif stmt == 'else':
                 assert self.stack[-1] == 'if', 'else without if for "{stmt}"'
@@ -133,10 +141,12 @@ class _Compiler:
                 self.close_literal()
                 line = line[2:]
                 end = line.find(CLOSE_CHARS[token])
-                assert end >= 0, f'No matching end for "{START}{token}" ' \
-                        f'in "{line.strip()}" in "{self.filename}"'
+                assert end >= 0, (
+                    f'No matching end for "{START}{token}" '
+                    f'in "{line.strip()}" in "{self.filename}"'
+                )
                 content = line[:end].strip()
-                line = line[end + 2:]
+                line = line[end + 2 :]
                 if token == STATEMENT:
                     self.parse_statement(content)
                 elif token == EXPRESSION:
@@ -149,8 +159,9 @@ class _Compiler:
                 self.literal(line[0])
                 line = line[1:]
 
+
 def compile(filename_in: Path, file_out: IO, funcname: str) -> None:
-    'Compile a template file to a Python function'
+    "Compile a template file to a Python function"
     comp = _Compiler(filename_in, file_out, funcname)
     out = False
     with filename_in.open() as file_in:
