@@ -1,27 +1,27 @@
 NAME = $(shell basename $(CURDIR))
 PYNAME = $(subst -,_,$(NAME))
+PYFILES = $(wildcard $(NAME)/*.py)
 
 check: test
-	ruff check $(NAME)/*.py
-	mypy $(NAME)/*.py
-	pyright $(NAME)/*.py
-	vermin -vv --no-tips -i $(NAME)/*.py
+	ruff check $(PYFILES)
+	mypy $(PYFILES)
+	pyright $(PYFILES)
 
 build:
 	rm -rf dist
-	python3 -m build
+	python3 -m build --sdist --wheel
 
 upload: build
-	twine3 upload dist/*
+	uv-publish
 
 doc:
 	update-readme-usage -a
 
-test:
+test::
 	cd test && make test
 
 format:
-	ruff format $(NAME)/*.py
+	ruff check --select I --fix $(PYFILES) && ruff format $(PYFILES)
 
 clean:
 	@rm -vrf *.egg-info .venv/ build/ dist/ __pycache__ $(NAME)/__pycache__ test/templates.py
