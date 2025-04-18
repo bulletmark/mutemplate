@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "mutemplate"
 description = "Compile template files into a standalone python file"
 readme = "README.md"
+license = "GPL-3.0-or-later"
 requires-python = ">=3.7"
 keywords = ["micropython", "microdot", "utemplate"]
 classifiers = [
@@ -22,9 +23,6 @@ Homepage = "https://github.com/bulletmark/mutemplate"
 
 [project.scripts]
 mutemplate = "mutemplate.mutemplate:main"
-
-[project.license]
-text = "GPLv3"
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
