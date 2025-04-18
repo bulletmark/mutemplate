@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import IO
@@ -22,6 +23,12 @@ def split_keyword(text: str) -> tuple[str, str]:
     "Split keyword from the rest of the text, return as tuple"
     tokens = text.split(maxsplit=1)
     return tokens[0], tokens[1] if len(tokens) > 1 else ''
+
+
+def check(condition: bool, message: str) -> None:
+    "Check condition and exit with error message if it fails"
+    if not condition:
+        sys.exit(f'ERROR: {message}')
 
 
 @dataclass
@@ -103,7 +110,7 @@ class _Compiler:
             )
         elif rest:
             if keyword == 'elif':
-                assert self.stack[-1] == 'if', 'elif without if for "{stmt}"'
+                check(self.stack[-1] == 'if', 'elif without if for "{stmt}"')
                 self.indent(-1)
                 self.file_out.write(f'{stmt}:\n')
             else:
@@ -112,16 +119,17 @@ class _Compiler:
                 self.stack.append(keyword)
         else:
             if stmt.startswith('end'):
-                assert self.stack[-1] == stmt[3:], (
-                    f'mismatched "{stmt}" for "{self.stack[-1]}"'
+                check(
+                    self.stack[-1] == stmt[3:],
+                    f'mismatched "{stmt}" for "{self.stack[-1]}"',
                 )
                 self.stack.pop()
             elif stmt == 'else':
-                assert self.stack[-1] == 'if', 'else without if for "{stmt}"'
+                check(self.stack[-1] == 'if', 'else without if for "{stmt}"')
                 self.indent(-1)
                 self.file_out.write('else:\n')
             else:
-                assert False, f'Unknown statement "{stmt}"'
+                check(False, f'Unknown statement "{stmt}"')
 
     def parse_expression(self, expr: str) -> None:
         self.indent()
@@ -141,9 +149,12 @@ class _Compiler:
                 self.close_literal()
                 line = line[2:]
                 end = line.find(CLOSE_CHARS[token])
-                assert end >= 0, (
-                    f'No matching end for "{START}{token}" '
-                    f'in "{line.strip()}" in "{self.filename}"'
+                check(
+                    end >= 0,
+                    (
+                        f'No matching end for "{START}{token}" '
+                        f'in "{line.strip()}" in "{self.filename}"'
+                    ),
                 )
                 content = line[:end].strip()
                 line = line[end + 2 :]
