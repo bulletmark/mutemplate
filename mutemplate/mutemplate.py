@@ -63,7 +63,7 @@ def try_eval(val: str) -> Any:
     "Try to evaluate a value. If it fails, evaluate it as a string"
     try:
         return literal_eval(val)
-    except ValueError:
+    except (ValueError, SyntaxError):
         pass
 
     return literal_eval(f'"{val}"')
@@ -180,9 +180,16 @@ class compile_:
         if not (files := [Path(p) for p in args.template_file]):
             return 'No files specified.'
 
+        # Check file can be read and ensure no duplicate names
+        names: dict[str, Path] = {}
         for file in files:
             if not file.is_file():
                 return f'File not found: {file}'
+
+            if other := names.get(file.stem):
+                return f'Error: "{other}" file name same as "{file}".'
+
+            names[file.stem] = file
 
         if args.outfile and args.outfile != '-':
             outpath = Path(args.outfile)
