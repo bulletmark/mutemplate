@@ -180,7 +180,7 @@ class compile_:
         if not (files := [Path(p) for p in args.template_file]):
             return 'No files specified.'
 
-        # Check file can be read and ensure no duplicate names
+        # Check each file can be read and ensure no duplicate names
         names: dict[str, Path] = {}
         for file in files:
             if not file.is_file():
