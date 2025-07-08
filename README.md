@@ -2,18 +2,16 @@
 [![PyPi](https://img.shields.io/pypi/v/mutemplate)](https://pypi.org/project/mutemplate/)
 [![AUR](https://img.shields.io/aur/version/mutemplate)](https://aur.archlinux.org/packages/mutemplate/)
 
-[`mutemplate`][mutemplate] is a command line tool you run on your
-development host/PC to compile one or more template text files into
-a single dynamically created stand-alone Python source file which can be
-imported into your project and rendered by specifying the template name
-and it's parameter arguments. `mutemplate` creates very lightweight and
-memory-efficient templates which are primarily designed for resource
-constrained environments such as [MicroPython][mp] on a
-micro-controller, although created templates can be used with standard
-Python also. `mutemplate` is derived from [`utemplate`][utemplate] and
-uses the same template format which is very similar to
-[`Django`][django] and [`Jinja`][jinja] templates. (e.g. `{% if %}`,
-`{{var}}`).
+[`mutemplate`][mutemplate] is a command line tool you run on your development
+host/PC to compile one or more input template text files into a single stand-alone
+output Python source file which can be imported into your project and rendered
+by specifying the template name and it's parameter arguments. `mutemplate`
+creates very lightweight and memory-efficient templates which are primarily
+designed for resource constrained environments such as [MicroPython][mp] on a
+micro-controller, although created templates can be used with standard Python
+also. `mutemplate` is derived from [`utemplate`][utemplate] and uses the same
+template format which is very similar to [`Django`][django] and
+[`Jinja`][jinja] templates. (e.g. `{% if %}`, `{{var}}`).
 
 Only essential template features are offered, for example, "filters"
 (`{{var|filter}}`) are syntactic sugar for function calls so are not
