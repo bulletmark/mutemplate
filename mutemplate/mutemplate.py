@@ -177,7 +177,8 @@ class compile_:
 
     @staticmethod
     def run(args: Namespace) -> str | None:
-        if not (files := [Path(p) for p in args.template_file]):
+        files = [Path(p) for p in args.template_file]
+        if not files:
             return 'No files specified.'
 
         # Check each file can be read and ensure no duplicate names
@@ -186,7 +187,8 @@ class compile_:
             if not file.is_file():
                 return f'File not found: {file}'
 
-            if other := names.get(file.stem):
+            other = names.get(file.stem)
+            if other:
                 return f'Error: "{other}" file name same as "{file}".'
 
             names[file.stem] = file
