@@ -146,10 +146,11 @@ if you want to get tricky with this.
 
 ## Differences from `utemplate`
 
-1. `mutemplate` is a command line tool only. It produces a single python
-file containing all your compiled templates so no run time compilation
-occurs on your Micropython device and no dynamic imports are done by the
-template engine.
+1. `mutemplate` is a command line tool only. It generates a single Python file
+containing all your compiled templates so this means no runtime compilation
+or dynamic imports are performed on your Micropython device. Since you only
+need to compile templates during code/template development, including a runtime
+compiler on a resource-constrained device is unnecessary.
 
 2. The `utemplate` "`args`"" parameter is not recognised and an error is
 reported if it is used in `mutemplate` templates. `utemplate` needs the
@@ -174,13 +175,12 @@ if you have 10 templates, all including a common `header.tpl` and a
 `header` templates + 10 copies of the `footer` templates, `mutemplate`
 will compile and store 1 of each only.
 
-4. `utemplate` (which appears to be unmaintained - no activity for 3
-years) has an issue where it breaks and `yields` more sub-strings then
-it needs to (whenever it hits **any** "`{`" character) but the parser
-has been improved in `mutemplate` to avoid this. `mutemplate` only
-breaks to a new `yield` when it must for a Python statement or
-expression, so templates are rendered a little more efficiently and
-quickly.
+4. `utemplate` (which appears to be unmaintained - no activity for >4 years)
+has an issue where it breaks and `yields` more sub-strings then it needs to
+(whenever it hits **any** "`{`" character) but the parser has been improved in
+`mutemplate` to avoid this. `mutemplate` only breaks to a new `yield` when it
+must for a Python statement or expression, so templates are rendered a little
+more efficiently and quickly.
 
 5. `mutemplate` also allows `{# comment #}` tags which are missing from
 `utemplate` but are provided by [`Django`][django] and [`Jinja`][jinja]
