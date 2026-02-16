@@ -22,7 +22,7 @@ email = "mark.blakeney@bullet-systems.net"
 Homepage = "https://github.com/bulletmark/mutemplate"
 
 [project.scripts]
-mutemplate = "mutemplate.mutemplate:main"
+mutemplate = "mutemplate.main:main"
 
 [tool.setuptools_scm]
 version_scheme = "post-release"

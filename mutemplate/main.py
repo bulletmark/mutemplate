@@ -17,7 +17,7 @@ from typing import IO, Any
 
 from .compiler import compile
 
-PROG = Path(__file__).stem
+PROG = Path(__file__).parent.stem
 
 TEMPLATE_HEADER = f"""
 #!/usr/bin/env python3
