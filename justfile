@@ -18,7 +18,7 @@ doc:
   update-readme-usage -a
 
 test:
-  cd test && make test
+  cd test && just test
 
 format:
   ruff check --select I --fix {{PYFILES}} && ruff format {{PYFILES}}
