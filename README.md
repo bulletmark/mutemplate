@@ -214,7 +214,7 @@ individual command:
 
 ```
 usage: mutemplate compile [-h] [-o OUTFILE] [-w] [-q]
-                           template_file [template_file ...]
+                                     template_file [template_file ...]
 
 Compile one or more template files into a single Python source file.
 
@@ -223,7 +223,7 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -o OUTFILE, --outfile OUTFILE
+  -o, --outfile OUTFILE
                         output file, default is stdout
   -w, --watch           watch specified files forever and run on any change
   -q, --quiet           do not print any informational messages
@@ -234,7 +234,8 @@ aliases: c
 ### Command `render`
 
 ```
-usage: mutemplate render [-h] [-d] template_file template_name [args ...]
+usage: mutemplate render [-h] [-d]
+                                    template_file template_name [args ...]
 
 Render given templates + arguments to output, for exercising/testing.
 
