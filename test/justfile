@@ -1,0 +1,7 @@
+test:
+  ./run-test.sh
+
+clean:
+  @rm -vrf templates.py __pycache__
+
+# vim: se sw=2:
