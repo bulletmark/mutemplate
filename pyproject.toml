@@ -36,7 +36,6 @@ ignore_missing_imports = true
 
 [tool.ruff.format]
 quote-style = "single"
-skip-magic-trailing-comma = true
 
 [tool.edit-lint]
 linters = [
