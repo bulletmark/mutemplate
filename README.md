@@ -207,14 +207,13 @@ Commands:
                         exercising/testing.
 ```
 
-Type `mutemplate <command> -h` to see specific help/usage for any
-individual command:
+Type `mutemplate <command> -h` to see specific help/usage for any individual command:
 
 ### Command `compile`
 
 ```
 usage: mutemplate compile [-h] [-o OUTFILE] [-w] [-q]
-                                     template_file [template_file ...]
+                          template_file [template_file ...]
 
 Compile one or more template files into a single Python source file.
 
@@ -234,8 +233,7 @@ aliases: c
 ### Command `render`
 
 ```
-usage: mutemplate render [-h] [-d]
-                                    template_file template_name [args ...]
+usage: mutemplate render [-h] [-d] template_file template_name [args ...]
 
 Render given templates + arguments to output, for exercising/testing.
 

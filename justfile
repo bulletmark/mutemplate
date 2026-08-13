@@ -15,7 +15,7 @@ upload: build
   uv-publish
 
 doc:
-  update-readme-usage -a
+  update-readme-usage
 
 test:
   cd test && just test
