@@ -1,11 +1,12 @@
-NAME := file_name(justfile_dir())
-PYFILES := shell('echo $1/*.py', NAME)
+PYFILES := `echo */*.py`
+SHFILES := `echo */*.sh`
 
 check:
   ruff check {{PYFILES}}
   ty check {{PYFILES}}
   vermin -vv --no-tips -i {{PYFILES}}
   md-link-checker
+  shellcheck {{SHFILES}}
 
 build:
   rm -rf dist
